@@ -1,40 +1,68 @@
 @extends('layouts.app')
-
+<link href="{{ asset('resources/css/dashboard.css') }}" rel="stylesheet">
 
 @section('content')
-<div class="container-fluid">
-    <!-- Dashboard content -->
-    <div class="row">
-        <div class="col-md-3">
-            <!-- Sidebar -->
-            <div class="card">
+<div class="container dashboard-container">
+    <div class="row text-center">
+        <!-- User Name Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card">
                 <div class="card-body">
-                    <!-- Sidebar content -->
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#profile">Profile</a></li>
-                        <li class="list-group-item"><a href="#placeOrder">Place Your Order</a></li>
-                        <li class="list-group-item"><a href="#orderHistory">Order History</a></li>
-                        <li class="list-group-item"><a href="#updateInfo">Update Information</a></li>
-                        <li class="list-group-item">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-link"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                            </form>
-                        </li>
-                    </ul>
+                    <h5 class="card-title"><i class="fas fa-user"></i> {{ Auth::user()->name }}</h5>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <!-- Main content -->
-            <div class="card">
+
+        <!-- Profile Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card">
                 <div class="card-body">
-                    <h5 class="card-title">Dashboard</h5>
-                    <p class="card-text">Welcome to your dashboard.</p>
-                    <!-- Add more content here -->
+                    <a href="#profile" class="btn btn-primary w-100"><i class="fas fa-id-badge"></i> Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Place Your Order Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <a href="#placeOrder" class="btn btn-primary w-100"><i class="fas fa-shopping-cart"></i> Place Your Order</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Information Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <a href="#updateInfo" class="btn btn-primary w-100"><i class="fas fa-edit"></i> Update Information</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order History Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <a href="#orderHistory" class="btn btn-primary w-100"><i class="fas fa-history"></i> Order History</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-logout w-100"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>

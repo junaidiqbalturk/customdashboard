@@ -1,57 +1,23 @@
-
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-            margin: 0;
-            background-color: #f4f6f9;
-        }
-        .navbar {
-            background-color: #343a40;
-            color: white;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .sidebar {
-            min-height: 100vh;
-            position: fixed;
-            top: 56px; /* height of the navbar */
-            left: 0;
-            width: 250px;
-            background-color: #343a40;
-            padding-top: 20px;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        .sidebar a {
-            font-size: 1rem;
-            color: #cfd8dc;
-            display: block;
-            padding: 15px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #495057;
-            color: #ffffff;
-        }
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            padding-top: 80px; /* to offset the navbar */
-            flex-grow: 1;
-        }
-        .card {
-            margin-bottom: 20px;
-            border: none;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
+body {
+    background-color: #f8f9fa;
+}
+.dashboard-container {
+    margin-top: 50px;
+}
+.dashboard-card {
+    transition: transform 0.2s;
+}
+.dashboard-card:hover {
+    transform: scale(1.05);
+}
+.card-title {
+    font-size: 1.5rem;
+}
+.btn-logout {
+    background-color: #dc3545;
+    color: #fff;
+}
+.btn-logout:hover {
+    background-color: #c82333;
+    color: #fff;
+}
