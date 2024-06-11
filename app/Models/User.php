@@ -29,7 +29,6 @@ class User extends Authenticatable
         'country',
         'number',
         'password',
-        'role',
     ];
 
     /**

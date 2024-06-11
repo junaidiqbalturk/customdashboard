@@ -51,7 +51,7 @@ class RegisterController extends Controller
 
         $this->create($request->all());
 
-        return redirect()->route('/login')->with('success', 'Registration successful! Please login.');
+        return redirect()->route('login')->with('success', 'Registration successful! Please login.');
     }
 
 
