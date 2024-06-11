@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Route;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
                 Log::info($query->sql, $query->bindings);
             });
         }
+       
     }
+   
+
 }

@@ -46,6 +46,6 @@ class LoginController extends Controller
 
     $request->session()->regenerateToken();
 
-    return redirect('/login'); // Redirect to login page
+    return redirect()->route('/login')->with('success','you have successfully Registered'); // Redirect to login page
 }
 }
