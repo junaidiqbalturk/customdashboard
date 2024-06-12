@@ -9,6 +9,6 @@ class UserController extends Controller
     //
     public function index()
     {
-        return view('dashboard'); // Assuming you have this view already
+        return view('home'); // Assuming you have this view already
     }
 }
