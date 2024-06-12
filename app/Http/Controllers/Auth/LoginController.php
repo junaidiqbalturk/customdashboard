@@ -46,7 +46,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('/login'); // Redirect to login page
+        return redirect()->route('login'); // Redirect to login page
     }
 
     //After login, redirect users based on their role. 
