@@ -25,4 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('user.dashboard');
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->middleware(App\Http\Middleware\AdminMiddleware::class)->name('admin.dashboard');
 });
-
+// Route for User Profile 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
+});

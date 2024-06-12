@@ -17,7 +17,7 @@
         <div class="col-md-4 mb-4">
             <div class="card dashboard-card">
                 <div class="card-body">
-                    <a href="#profile" class="btn btn-primary w-100"><i class="fas fa-id-badge"></i> Profile</a>
+                    <a href="{{ route('profile') }}" class="btn btn-primary w-100"><i class="fas fa-id-badge"></i>View Profile</a>
                 </div>
             </div>
         </div>
