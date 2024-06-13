@@ -2069,7 +2069,7 @@ p {
                   <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">Username: {{ $user->username }}</span>
+                  <span class="mb-0 text-sm  font-weight-bold">{{ $user->name }}</span>
                 </div>
               </div>
             </a>
@@ -2112,7 +2112,7 @@ p {
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{ $user->name }}</h1>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+            <p class="text-white mt-0 mb-5">This is your profile page. You can see your Profile Information like Address, Email Address, Username, and Address</p>
             <a href="#!" class="btn btn-info">Edit profile</a>
           </div>
         </div>
@@ -2133,10 +2133,6 @@ p {
               </div>
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              <div class="d-flex justify-content-between">
-                <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-                <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-              </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="row">
@@ -2156,11 +2152,8 @@ p {
                   <i class="ni business_briefcase-24 mr-2"></i>{{ $user->country }}
                 </div>
                 <div>
-                  <i class="ni education_hat mr-2"></i>University of Computer Science
+                  <i class="ni education_hat mr-2"></i>{{ $user->companyname }}
                 </div>
-                <hr class="my-4">
-                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                <a href="#">Show more</a>
               </div>
             </div>
           </div>
@@ -2185,27 +2178,27 @@ p {
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value={{ $user->uname }}>
+                        <input disabled style="color: black;" type="text" id="input-username" class="form-control form-control-alternative" value={{ $user->uname }}>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" pvalue={{ $user->username }}>
+                        <input disabled style="color: black;" type="email" id="input-email" class="form-control form-control-alternative" value={{ $user->email }}>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value={{ $user->full_name }}>
+                        <label class="form-control-label" for="input-first-name">Name</label>
+                        <input disabled style="color: black;" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value={{ $user->name }}>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                        <label class="form-control-label" for="input-last-name">Phone Number</label>
+                        <input disabled style="color: black;" type="text" id="input-last-name" class="form-control form-control-alternative" value={{ $user->phonenumber }}>
                       </div>
                     </div>
                   </div>
@@ -2218,7 +2211,7 @@ p {
                     <div class="col-md-12">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-address">Address</label>
-                        <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                        <input disabled id="input-address" style="color: black;" class="form-control form-control-alternative" value="{{ $user->caddress }}" type="text">
                       </div>
                     </div>
                   </div>
@@ -2226,13 +2219,13 @@ p {
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
+                        <input disabled type="text" style="color: black;"  id="input-city" class="form-control form-control-alternative" value="{{ $user->caddress }}">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-country">Country</label>
-                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
+                        <input disabled style="color: black;" type="text" id="input-country" class="form-control form-control-alternative"  value="{{ $user->country }}">
                       </div>
                     </div>
                     <div class="col-lg-4">
@@ -2245,12 +2238,6 @@ p {
                 </div>
                 <hr class="my-4">
                 <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">About me</h6>
-                <div class="pl-lg-4">
-                  <div class="form-group focused">
-                    <label>About Me</label>
-                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                  </div>
                 </div>
               </form>
             </div>
