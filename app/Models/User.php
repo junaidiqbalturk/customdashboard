@@ -27,7 +27,7 @@ class User extends Authenticatable
         'caddress',
         'companyname',
         'country',
-        'number',
+        'phonenumber',
         'password',
     ];
 
