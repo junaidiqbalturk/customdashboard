@@ -155,7 +155,7 @@
                 <div class="card">
                     <div class="card-content">
                         <i class="fas fa-shopping-cart card-icon"></i>
-                        <h2>Place your Order</h2>
+                        <h2><a href="{{ route('custom-order.create') }}">Place your Order</a></h2>
                         <p>Order custom products quickly and easily.</p>
                     </div>
                 </div>

@@ -29,3 +29,9 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 });
+
+//Routes for Custom Orders Page 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/custom-order', [App\Http\Controllers\OrderController::class, 'create'])->name('custom-order.create');
+    Route::post('/custom-order', [App\Http\Controllers\OrderController::class, 'store'])->name('custom-order.store');
+});
