@@ -15,27 +15,83 @@ class OrderController extends Controller
 
     }
 
-    public function store(Request $request)
+   /* public function store(Request $request)
     {
-        $request->validate([
-            'digitizing_type' => 'required|string',
-            'length' => 'required|integer',
-            'width' => 'required|integer',
-            'placement' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        dd($request->all());
+        // Validate request
+    $validatedData = $request->validate([
+        'address' => 'required|string|max:255',
+        'city' => 'required|string|max:255',
+        'country'=>'required|string',
+        'digitizing_type' => 'required|string',
+        'length' => 'required|numeric',
+        'width' => 'required|numeric',
+        'placement' => 'required|string',
+        'image' => 'required|image|max:2048'
+    ]);
+    dd($validatedData);
+        // Handle file upload
+        if ($request->hasFile('image_path')) {
+            $imagePath = $request->file('image_path')->store('uploads', 'public');
+        }
+      
+        // Create new order
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->address = $validatedData['address'];
+        $order->city = $validatedData['city'];
+        $order->digitizing_type = $validatedData['digitizing_type'];
+        $order->length = $validatedData['length'];
+        $order->width = $validatedData['width'];
+        $order->placement = $validatedData['placement'];
+        $order->image_path = $imagePath ?? null;
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        \DB::listen(function($query) {
+            \Log::info($query->sql);
+            \Log::info($query->bindings);
+        });
 
-        Order::create([
-            'user_id' => Auth::id(),
-            'digitizing_type' => $request->digitizing_type,
-            'length' => $request->length,
-            'width' => $request->width,
-            'placement' => $request->placement,
-            'image_path' => $imagePath,
-        ]);
+        $order->save();
+        return redirect()->route('custom-order.create')->with('success', 'Order placed successfully');
+    }*/
 
-        return redirect()->route('custom-order.create')->with('success', 'Order placed successfully!');
+
+    public function store(Request $request)
+{
+    // Log the incoming request
+    \Log::info('Incoming request data:', $request->all());
+
+    // Validate request
+    $validatedData = $request->validate([
+        'address' => 'required|string|max:255',
+        'city' => 'required|string|max:255',
+        'digitizing_type' => 'required|string',
+        'length' => 'required|numeric',
+        'width' => 'required|numeric',
+        'placement' => 'required|string',
+        'image' => 'required|image|max:2048'
+    ]);
+
+    // Handle file upload
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('uploads', 'public');
     }
+
+    // Create new order
+    $order = new Order();
+    $order->user_id = Auth::id();
+   // $order->full_name = Auth::user()->name;
+    //$order->company_name = Auth::user()->company_name;
+    $order->address = $validatedData['address'];
+    $order->city = $validatedData['city'];
+    $order->country = $validatedData['country'];
+    $order->digitizing_type = $validatedData['digitizing_type'];
+    $order->length = $validatedData['length'];
+    $order->width = $validatedData['width'];
+    $order->placement = $validatedData['placement'];
+    $order->image_path = $imagePath ?? null;
+    $order->save();
+
+    return redirect()->route('custom-order.create')->with('success', 'Order placed successfully');
+}
 }

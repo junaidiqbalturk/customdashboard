@@ -9,8 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-         'user_id', 'digitizing_type', 'length', 'width', 'placement', 'image_path'
+    protected $fillable = [
+        'user_id', 'address', 'city','country', 'digitizing_type', 'length', 'width', 'placement', 'image_path'
     ];
 
     public function user()

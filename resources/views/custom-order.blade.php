@@ -52,6 +52,7 @@
         </div>
     @endif
         <form id="orderForm" action="{{ route('custom-order.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="row">
                 <div class="input-field col s12 m6">
                     <input id="name" type="text" class="validate" value="{{ $user->name }}" readonly>
@@ -70,11 +71,11 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="city" name ='city' type="text" class="validate" required>
+                    <input id="city" name ="city" type="text" class="validate" required>
                     <label for="city">City</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <select id="country" required>
+                    <select name ="country" id="country" required>
                         <option value="" disabled selected>Select Country</option>
                         <option value="USA">USA</option>
                         <option value="Canada">Canada</option>
@@ -86,13 +87,13 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="phone" name ="phonenumber" type="tel" class="validate" required>
-                    <label for="phone">Phone Number</label>
+                    <input id="phonenumber" name ="phonenumber" type="text" class="validate" required>
+                    <label for="phonenumber">Phone Number</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="digitizingType" required>
+                    <select name = "digitizing_type" id="digitizing_type" required>
                         <option value="" disabled selected>Choose your option</option>
                         <option value="vector_art">Vector Art</option>
                         <option value="custom_digitizing">Custom Digitizing</option>
@@ -100,12 +101,12 @@
                         <option value="patches">Patches</option>
                         <option value="woven_patches">Woven Patches</option>
                     </select>
-                    <label for="digitizingType">Digitizing Type</label>
+                    <label for="digitizing_type">Digitizing Type</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="placement" required>
+                    <select name = "placement" id="placement" required>
                         <option value="" disabled selected>Choose your option</option>
                         <option value="left_chest">Left Chest</option>
                         <option value="right_chest">Right Chest</option>
@@ -116,11 +117,11 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="height" type="number" class="validate" required>
+                    <input name = "height" id="height" type="number" class="validate" required>
                     <label for="height">Height (cm)</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="width" type="number" class="validate" required>
+                    <input name = "width" id="width" type="number" class="validate" required>
                     <label for="width">Width (cm)</label>
                 </div>
             </div>
@@ -128,14 +129,15 @@
                 <div class="file-field input-field col s12">
                     <div class="btn">
                         <span>Upload Image</span>
-                        <input type="file" id="uploadImage" required>
+                        <input type="file" name = "image_path" id="image_path" required>
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn waves-effect waves-light">Place Your Order Now</button>
+            <button formaction="{{ route('custom-order.store') }}" type="submit" class="btn waves-effect waves-light">Place Your Order Now</button>
+            
         </form>
     </div>
     <!-- Materialize JavaScript CDN -->
@@ -155,12 +157,12 @@
             const address = document.getElementById('address').value;
             const city = document.getElementById('city').value;
             const country = document.getElementById('country').value;
-            const phone = document.getElementById('phone').value;
-            const digitizingType = document.getElementById('digitizingType').value;
+            const phone = document.getElementById('phonenumber').value;
+            const digitizingType = document.getElementById('digitizing_type').value;
             const placement = document.getElementById('placement').value;
             const height = document.getElementById('height').value;
             const width = document.getElementById('width').value;
-            const uploadImage = document.getElementById('uploadImage').files[0];
+            const uploadImage = document.getElementById('image_path').files[0];
 
             if (name && companyName && address && city && country && phone && digitizingType && placement && height && width && uploadImage) {
                 alert('Order placed successfully!');
