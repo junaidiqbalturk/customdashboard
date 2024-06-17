@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('country');
+            $table->string('phonenumber');
             $table->string('digitizing_type');
-            $table->integer('length');
+            $table->integer('height');
             $table->Integer('width');
             $table->string('placement');
             $table->string('image_path');

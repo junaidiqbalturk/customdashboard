@@ -51,7 +51,7 @@
             {{ session('success') }}
         </div>
     @endif
-        <form id="orderForm" action="{{ route('custom-order.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('custom-order.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="input-field col s12 m6">
@@ -129,14 +129,14 @@
                 <div class="file-field input-field col s12">
                     <div class="btn">
                         <span>Upload Image</span>
-                        <input type="file" name = "image_path" id="image_path" required>
+                        <input type="file" name = "image" id="image" required>
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
                     </div>
                 </div>
             </div>
-            <button formaction="{{ route('custom-order.store') }}" type="submit" class="btn waves-effect waves-light">Place Your Order Now</button>
+            <button type="submit" class="btn waves-effect waves-light">Place Your Order Now</button>
             
         </form>
     </div>
@@ -162,7 +162,7 @@
             const placement = document.getElementById('placement').value;
             const height = document.getElementById('height').value;
             const width = document.getElementById('width').value;
-            const uploadImage = document.getElementById('image_path').files[0];
+            const uploadImage = document.getElementById('image').files[0];
 
             if (name && companyName && address && city && country && phone && digitizingType && placement && height && width && uploadImage) {
                 alert('Order placed successfully!');
@@ -172,5 +172,16 @@
             }
         });
     </script>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 </body>
 </html>

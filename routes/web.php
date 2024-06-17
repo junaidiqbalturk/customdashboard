@@ -35,3 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/custom-order', [App\Http\Controllers\OrderController::class, 'create'])->name('custom-order.create');
     Route::post('/custom-order', [App\Http\Controllers\OrderController::class, 'store'])->name('custom-order.store');
 });
+
+//test route 
+Route::get('/test-log', function () {
+    \Log::info('Test log entry');
+    return 'Log entry created';
+});
