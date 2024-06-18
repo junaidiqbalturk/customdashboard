@@ -82,6 +82,21 @@ class OrderController extends Controller
         //pass the orders to the view 
         return view('order-history', compact('orders'));
     }
+
+    //Function to show SIngle Order in detail 
+
+    public function show($id)
+    {
+        // Retrieve the order by ID
+        $order = Order::find($id);
+
+         // Check if the order exists
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+         // Return the partial view with the order data
+         return view('partials.order-details', compact('order'));
+    }
     
 
 }

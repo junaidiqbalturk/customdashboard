@@ -1,5 +1,8 @@
-<!-- resources/views/order_history.blade.php -->
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 <style>
     /* public/css/styles.css */
 
@@ -35,7 +38,22 @@ img {
 }
 
 </style>
-@section('content')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Body content -->
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Order History</h1>
@@ -97,7 +115,7 @@ img {
                             @endif
                         </td>
                         <td>
-                            <a href="#" class="btn btn-primary">View Order</a>
+                        <button class="btn btn-primary btn-view-order" data-id="{{ $order->id }}">View Order</button>
                         </td>
                     </tr>
                 @empty
@@ -109,4 +127,64 @@ img {
         </table>
     </div>
 </div>
-@endsection
+
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalLabel">Order Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Order details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const viewOrderButtons = document.querySelectorAll('.btn-view-order');
+
+    viewOrderButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const orderId = this.getAttribute('data-id');
+            console.log('Order ID:', orderId); // Log the order ID for debugging
+
+            if (!orderId) {
+                console.error('Order ID is null');
+                return;
+            }
+
+            const url = `/orders/${orderId}`;
+            console.log('Fetching URL:', url); // Log the URL being fetched
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('Response data:', data); // Log the response data for debugging
+                    document.querySelector('#orderModal .modal-body').innerHTML = data;
+                    const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
+                    orderModal.show();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
+
+</body>
+</html>

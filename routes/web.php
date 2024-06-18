@@ -38,3 +38,6 @@ Route::middleware(['auth'])->group(function () {
 
 //order history Route 
 Route::get('/order-history', [App\Http\Controllers\OrderController::class, 'orderHistory'])->name('order.history')->middleware('auth');
+
+//view single order route 
+Route::get('/orders/{id}', [App\Http\Controllers\OrderController::class, 'show'])->name('order.show')->middleware('auth');
