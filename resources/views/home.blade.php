@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+     <!-- Include Materialize Icons -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Embedding CSS here for simplicity */
@@ -127,6 +130,14 @@
                 align-items: center;
             }
         }
+        /* Custom styles for toast notifications */
+        .custom-toast {
+            background-color: #4caf50 !important;/* Success color */
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -199,5 +210,24 @@
             });
         });
     </script>
+    <!-- Include Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                M.toast({
+                html: '<i class="material-icons left">check_circle</i>{{ session('success') }}',
+                displayLength: 4000,
+                classes: 'custom-toast',
+                displayLength: 4000,
+                inDuration: 300,
+                outDuration: 375,
+                classes:    'rounded',
+                completeCallback: function() { console.log('Toast dismissed.'); },
+                activationPercent: 0.8
+            });
+            });
+        </script>
+    @endif
 </body>
 </html>

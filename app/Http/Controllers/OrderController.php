@@ -29,13 +29,21 @@ class OrderController extends Controller
             'height' => 'required|numeric',
             'width' => 'required|numeric',
             'placement' => 'required|string',
-            // 'image' => 'required|image|max:2048'
+            'image' => 'required|image|max:2048'
         ]);
     
         \Log::info('Validated Data:', $validatedData);
     
+          // Handle the image upload
+            if ($request->hasFile('image')) 
+             {
+                  $imagePath = $request->file('image')->store('uploads', 'public');
+            } else 
+                {
+                    $imagePath = null;
+                }
         // Simulate image path
-        $imagePath = 'uploads/test.jpg';
+        //$imagePath = 'uploads/test.jpg';
     
         $order = new Order();
         $order->user_id = Auth::id();
@@ -59,7 +67,7 @@ class OrderController extends Controller
             return redirect()->back()->withErrors(['msg' => 'Order could not be saved.']);
         }
     
-        return redirect()->route('custom-order.create')->with('success', 'Order placed successfully');
+        return redirect()->route('home')->with('success', 'Order placed successfully');
     }
     
 
