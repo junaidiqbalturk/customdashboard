@@ -173,7 +173,7 @@
                 <div class="card">
                     <div class="card-content">
                         <i class="fas fa-history card-icon"></i>
-                        <h2>Order History</h2>
+                        <h2><a href="{{ route('order.history') }}">Order History</a></h2>
                         <p>View your past orders and track current ones.</p>
                     </div>
                 </div>

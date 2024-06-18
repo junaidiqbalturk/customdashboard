@@ -69,6 +69,19 @@ class OrderController extends Controller
     
         return redirect()->route('home')->with('success', 'Order placed successfully');
     }
+
+    //order History Function 
+    public function orderHistory()
+    {
+        //Get AUthenticated User 
+        $user = Auth::user();
+
+        //Fetch the orders for the authenticated user
+        $orders = Order::where('user_id',$user->id)->orderBy('created_at','asc')->get();
+
+        //pass the orders to the view 
+        return view('order-history', compact('orders'));
+    }
     
 
 }
