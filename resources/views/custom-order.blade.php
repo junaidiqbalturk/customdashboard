@@ -95,11 +95,11 @@
                 <div class="input-field col s12">
                     <select name = "digitizing_type" id="digitizing_type" required>
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="vector_art">Vector Art</option>
-                        <option value="custom_digitizing">Custom Digitizing</option>
-                        <option value="embroidery_digitizing">Embroidery Digitizing</option>
+                        <option value="vector-art">Vector Art</option>
+                        <option value="custom-digitizing">Custom Digitizing</option>
+                        <option value="embroidery-digitizing">Embroidery Digitizing</option>
                         <option value="patches">Patches</option>
-                        <option value="woven_patches">Woven Patches</option>
+                        <option value="woven-patches">Woven Patches</option>
                     </select>
                     <label for="digitizing_type">Digitizing Type</label>
                 </div>

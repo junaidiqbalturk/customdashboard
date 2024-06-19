@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\Status;
 class OrderController extends Controller
 {
     //
@@ -98,6 +99,22 @@ class OrderController extends Controller
          // Return the partial view with the order data
          return view('partials.order-details', compact('order'));
     }
-    
+    //Fetching Order details for Administrator
+    public function index()
+    {
+        $orders = Order::with(['user', 'status'])->get();
+        $statuses = Status::all();
+        return view('admin.orders.index', compact('orders', 'statuses'));
+    }
+
+    //Update logic for ORder status for Admin
+    public function updateStatus(Request $request, $id)
+    {
+        $order = Order::find($id);
+        $order->status_id = $request->status_id;
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order status updated successfully.');
+    }
 
 }

@@ -44,3 +44,9 @@ Route::get('/orders/{id}', [App\Http\Controllers\OrderController::class, 'show']
 
 //View Registered Customer/users Administrator Only 
 Route::get('/admin/view-customers', 'App\Http\Controllers\Admin\CustomerController@index')->name('admin.view-customers');
+
+//Administrator View orders Routes 
+Route::get('/admin/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('admin.orders.index');
+
+// Add this route for updating order status
+Route::put('/admin/orders/{id}/update-status', [App\Http\Controllers\OrderController::class, 'updateStatus'])->name('admin.orders.update-status');

@@ -148,7 +148,7 @@ function logout() {
             <div class="icon-container">
                 <i class="fas fa-shopping-cart"></i>
             </div>
-            <h2>View All Orders</h2>
+            <h2><a class="nav-link" href="{{ route('admin.orders.index') }}">View All Orders</a></h2> 
         </div>
         <div class="card" onclick="generateInvoices()">
             <div class="icon-container">
@@ -160,7 +160,7 @@ function logout() {
             <div class="icon-container">
                 <i class="fas fa-users"></i>
             </div>
-            <h2><a class="nav-link" href="{{ route('admin.view-customer') }}">View Customers</a></h2>
+            <h2><a class="nav-link" href="{{ route('admin.view-customers') }}">View Customers</a></h2>
         </div>
         <div class="card" onclick="logout()">
             <div class="icon-container">
