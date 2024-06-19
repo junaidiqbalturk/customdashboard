@@ -56,6 +56,7 @@ class OrderController extends Controller
         $order->width = $validatedData['width'];
         $order->placement = $validatedData['placement'];
         $order->image_path = $imagePath;
+        $order->status_id = 1;
     
         \Log::info('Order Data Before Save:', $order->toArray());
     

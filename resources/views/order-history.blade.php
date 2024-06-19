@@ -27,6 +27,15 @@ body {
     vertical-align: middle;
 }
 
+.animated {
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Adjust timing as needed */
+}
+
+.animated.show {
+    opacity: 1;
+}
+
 .btn-primary,
 .btn-info {
     margin-right: 5px;
@@ -35,6 +44,33 @@ body {
 img {
     max-width: 100%;
     height: auto;
+}
+.order-status-container {
+    overflow: hidden; /* Ensure status text doesn't overflow */
+    background-color: #ff4d4d; /* Red background color */
+    padding: 10px; /* Adjust padding */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.order-status {
+    text-align: center; /* Center-align the status text */
+}
+
+.status-text {
+    color: #ffffff; /* White font color */
+    font-weight: bold; /* Bold text */
+    font-size: 18px; /* Adjust font size */
+    opacity: 0;
+    animation: fadeInOut 5s linear infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 </style>
@@ -89,8 +125,8 @@ img {
                     <th>Height</th>
                     <th>Width</th>
                     <th>Placement</th>
-                    <th>Status</th>
                     <th>Image</th>
+                    <th>Order Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -106,7 +142,6 @@ img {
                         <td>{{ $order->height }}</td>
                         <td>{{ $order->width }}</td>
                         <td>{{ $order->placement }}</td>
-                        <td>{{ ucfirst($order->status) }}</td>
                         <td>
                             @if($order->image_path)
                                 <img src="{{ asset('storage/' . $order->image_path) }}" alt="Order Image" style="width: 100px;">
@@ -114,9 +149,12 @@ img {
                                 No Image
                             @endif
                         </td>
+                        <td class="order-status-container order-status">{{ $order->status->name }}</td>
                         <td>
-                        <button class="btn btn-primary btn-view-order" data-id="{{ $order->id }}">View Order</button>
+                        <button style="margin-top:10px; width: 115px;" class="btn btn-primary btn-view-order" data-id="{{ $order->id }}">View Order</button>
+                        <button style="margin-top:10px; width: 115px;" class="btn btn-primary btn-view-order" data-id="{{ $order->id }}">View Invoice</button>
                         </td>
+                    
                     </tr>
                 @empty
                     <tr>
@@ -185,6 +223,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+    // Example jQuery to update status text dynamically (if needed)
+$(document).ready(function() {
+    setInterval(function() {
+        // Replace with your actual logic to update statuses dynamically
+        $('.status-text').text('New Status'); // Example update
+    }, 5000); // Update every 5 seconds (adjust as needed)
+});
 
+</script>
 </body>
 </html>

@@ -11,7 +11,7 @@
     <p><strong>Placement:</strong> {{ $order->placement }}</p>
     <p><strong>Height:</strong> {{ $order->height }}</p>
     <p><strong>Width:</strong> {{ $order->width }}</p>
-    <p><strong>Order Status:</strong> {{ ucfirst($order->status) }}</p>
+    <p><strong>Order Status:</strong> {{ ucfirst($order->status->name) }}</p>
     <p><strong>Image:</strong></p>
     @if($order->image_path)
         <img src="{{ asset('storage/' . $order->image_path) }}" alt="Order Image" style="max-width: 100%; height: auto;">
