@@ -41,3 +41,6 @@ Route::get('/order-history', [App\Http\Controllers\OrderController::class, 'orde
 
 //view single order route 
 Route::get('/orders/{id}', [App\Http\Controllers\OrderController::class, 'show'])->name('order.show')->middleware('auth');
+
+//View Registered Customer/users Administrator Only 
+Route::get('/admin/view-customers', 'App\Http\Controllers\Admin\CustomerController@index')->name('admin.view-customers');

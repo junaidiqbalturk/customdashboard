@@ -72,6 +72,7 @@ img {
         opacity: 1;
     }
 }
+/* new css */
 
 </style>
     <meta charset="UTF-8">
@@ -149,7 +150,7 @@ img {
                                 No Image
                             @endif
                         </td>
-                        <td class="order-status-container order-status">{{ $order->status->name }}</td>
+                        <td style="background: red;font-size: large;font-weight: bolder;color: white;" class="order-status-container order-status">{{ $order->status->name }}</td>
                         <td>
                         <button style="margin-top:10px; width: 115px;" class="btn btn-primary btn-view-order" data-id="{{ $order->id }}">View Order</button>
                         <button style="margin-top:10px; width: 115px;" class="btn btn-primary btn-view-order" data-id="{{ $order->id }}">View Invoice</button>

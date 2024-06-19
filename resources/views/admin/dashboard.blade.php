@@ -160,7 +160,7 @@ function logout() {
             <div class="icon-container">
                 <i class="fas fa-users"></i>
             </div>
-            <h2>View Customers</h2>
+            <h2><a class="nav-link" href="{{ route('admin.view-customer') }}">View Customers</a></h2>
         </div>
         <div class="card" onclick="logout()">
             <div class="icon-container">
