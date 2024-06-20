@@ -141,7 +141,7 @@ function logout() {
 <body>
     <header class="header">
         <h1>Administrator Area</h1>
-        <p>Welcome, Admin Name</p>
+        <p>Welcome, {{ Auth::user()->name }}</p>
     </header>
     <main class="main-content">
         <div class="card" onclick="viewOrders()">
