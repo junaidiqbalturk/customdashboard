@@ -18,28 +18,16 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //admin
         [
-            'name' => 'testadmin',
-            'uname' => 'testadmin',
-            'email' => 'test@example.com',
+            'name' => 'Super User',
+            'uname' => 'super.user',
+            'email' => 'admin@codelogicsolution.com',
             'country' => 'Pakistan',
-            'companyname' => 'TX Digitizing',
+            'companyname' => 'Code Logic Solution',
             'caddress' =>   'Karachi, Pakistan',
             'phonenumber' =>    '03122978038',
             'password'=> Hash::make('greamesmith'),
             'role'=>'admin'
         ],
-            //user
-            [
-                'name' => 'testuser',
-                'uname' => 'testuser',
-                'email' => 'testuser@example.com',
-                'country' => 'Pakistan',
-                'companyname' => 'TX Digitizing',
-                'caddress' =>   'Karachi, Pakistan',
-                'phonenumber' =>    '03122978038',
-                'password'=> Hash::make('greamesmith'),
-                'role'=>'user'
-            ], 
         ]);
         $this->call(UsersTableSeeder::class);
     }

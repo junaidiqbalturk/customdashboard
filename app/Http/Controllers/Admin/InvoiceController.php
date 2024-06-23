@@ -52,7 +52,7 @@ class InvoiceController extends Controller
         $user = $order->user;
         Notification::send($user, new InvoiceGenerated($invoice));
 
-        return redirect()->route('admin.view-orders')->with('success', 'Invoice generated and notification sent to the client.');
+        return redirect()->route('admin.dashboard')->with('success', 'Invoice generated and notification sent to the client.');
     }
 
    
