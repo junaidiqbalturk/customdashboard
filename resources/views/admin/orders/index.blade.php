@@ -72,7 +72,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-primary btn-update-status">Update Status</button>
+                            <button type="submit" class="btn btn-primary btn-update-status">Update Status</button>                     
                         </form>
                     </td>
                 </tr>

@@ -23,4 +23,10 @@ class Order extends Model
      {
          return $this->belongsTo(Status::class, 'status_id');
      }
+
+     //Relationship with Invoices Generation
+     public function invoices()
+     {
+         return $this->hasMany(Invoice::class);
+     }
 }

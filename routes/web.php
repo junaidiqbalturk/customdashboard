@@ -50,3 +50,8 @@ Route::get('/admin/orders', [App\Http\Controllers\OrderController::class, 'index
 
 // Add this route for updating order status
 Route::put('/admin/orders/{id}/update-status', [App\Http\Controllers\OrderController::class, 'updateStatus'])->name('admin.orders.update-status');
+
+//Generate Invoices and setting Price Routes 
+Route::get('/admin/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('admin.invoices.index');
+    Route::get('/invoices/generate/{orderId}', [App\Http\Controllers\Admin\InvoiceController::class, 'create'])->name('admin.invoices.create');
+    Route::post('/invoices/store/{orderId}', [App\Http\Controllers\Admin\InvoiceController::class, 'storeInvoice'])->name('admin.invoices.store');

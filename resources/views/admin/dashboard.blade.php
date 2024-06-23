@@ -154,7 +154,7 @@ function logout() {
             <div class="icon-container">
                 <i class="fas fa-file-invoice"></i>
             </div>
-            <h2>Generate Invoices</h2>
+            <h2><a href="{{ route('admin.invoices.index') }}" class="btn btn-primary">Generate Invoices</a></h2>
         </div>
         <div class="card" onclick="viewCustomers()">
             <div class="icon-container">

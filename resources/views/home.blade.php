@@ -190,6 +190,18 @@
                         <h2>View your Invoices</h2>
                         <p>Access and manage your invoices.</p>
                     </div>
+                    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@foreach(auth()->user()->notifications as $notification)
+    <div class="alert alert-info">
+        Invoice #{{ $notification->data['invoice_id'] }} for Order #{{ $notification->data['order_id'] }} has been generated. Amount: ${{ $notification->data['amount'] }}
+    </div>
+@endforeach
+
                 </div>
             </div>
         </main>
