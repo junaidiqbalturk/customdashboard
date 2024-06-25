@@ -45,8 +45,10 @@ class InvoiceController extends Controller
 
         // Generate PDF
         $pdf = Pdf::loadView('admin.invoices.template', compact('invoice', 'order'));
-        //$pdf->save(storage_path('app/public/invoices/invoice_' . $invoice->id . '.pdf'));
-         $pdf->download('invoice-' . $invoice->id . '.pdf');
+          // Save the PDF file
+          $pdfPath = storage_path('app/public/invoices/invoice-' . $invoice->id . '.pdf');
+          $pdf->save($pdfPath);
+         //$pdf->download('invoice-' . $invoice->id . '.pdf');
 
         // Send notification to the user
         $user = $order->user;

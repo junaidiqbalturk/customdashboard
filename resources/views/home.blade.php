@@ -177,6 +177,27 @@
   animation-name: tada;
 }
 
+.notice {
+  background-color: #EFEFEF;
+  border: 3px solid #444;
+  padding: 1rem;
+  margin: 2rem 0;
+}
+
+.notice::before {
+  content: "Notice";
+  background: yellow;
+  width: 24rem;
+  border-right: 3px solid #444;
+  border-bottom: 3px solid #444;
+  display: block;
+  text-align: center;
+  position: relative;
+  left: -1rem;
+  top: -1rem;
+  padding: 2px 10px;
+  font-weight: bold;
+}
         
     </style>
 </head>
@@ -210,7 +231,7 @@
 @endif
             <div class="notifications">
                 @foreach(auth()->user()->notifications as $notification)
-                    <div class="notification">
+                    <div class="notification notice">
                         <i class="fas fa-info-circle animated tada"></i>
                         <div class="notification-content">
                         <p>Invoice #{{ $notification->data['invoice_id'] }} for Order #{{ $notification->data['order_id'] }} has been generated. Amount: ${{ $notification->data['amount'] }}</p>
