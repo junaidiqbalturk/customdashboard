@@ -146,6 +146,38 @@
             padding: 10px;
         }
         /* notification css */
+        .animated {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes tada {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.tada {
+  animation-name: tada;
+}
+
+        
     </style>
 </head>
 <body>
@@ -170,6 +202,24 @@
             </div>
         </header>
         <main>
+       <!-- Notifications -->
+       @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+            <div class="notifications">
+                @foreach(auth()->user()->notifications as $notification)
+                    <div class="notification">
+                        <i class="fas fa-info-circle animated tada"></i>
+                        <div class="notification-content">
+                        <p>Invoice #{{ $notification->data['invoice_id'] }} for Order #{{ $notification->data['order_id'] }} has been generated. Amount: ${{ $notification->data['amount'] }}</p>
+                            <span>{{ $notification->created_at->diffForHumans() }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
             <div class="cards-container">
                 <div class="card">
                     <div class="card-content">
@@ -199,31 +249,10 @@
                         <p>Access and manage your invoices.</p>
                     </div>
                 </div>
-                
             </div>    
         </div>
     </div>
 </div>
-<div class="notifications">
-    @foreach ($notification as $notifications)
-        <div class="notification-item">
-            <div class="icon">
-                <i class="fas fa-bell"></i>
-            </div>
-            <div class="content">
-                <h4>{{ $notifications->data['message'] }}</h4>
-                <p>Invoice Amount: ${{ $notifications->data['amount'] }}</p>
-                <p>Order Number: #{{ $notifications->data['order_id'] }}</p>
-                <span class="time">
-                    {{ $notifications->created_at->diffInMinutes(now()) }} minutes ago
-                </span>
-                <button class="btn btn-primary">View Invoice</button>
-            </div>
-        </div>
-    @endforeach
-</div>
-
-
         </main>
     </div>
     <script>
