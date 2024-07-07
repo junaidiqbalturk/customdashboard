@@ -162,6 +162,12 @@ function logout() {
             </div>
             <h2><a class="nav-link" href="{{ route('admin.view-customers') }}">View Customers</a></h2>
         </div>
+        <div class="card">
+            <div class="icon-container">
+                <i class="fas fa-users"></i>
+            </div>
+            <h2><a class="nav-link" href="{{ route('admin.invoices.viewGeneratedInvoices') }}">View All Invoices</a></h2>
+        </div>
         <div class="card" onclick="logout()">
             <div class="icon-container">
                 <i class="fas fa-sign-out-alt"></i>

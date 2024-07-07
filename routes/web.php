@@ -55,3 +55,6 @@ Route::put('/admin/orders/{id}/update-status', [App\Http\Controllers\OrderContro
 Route::get('/admin/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('admin.invoices.index');
     Route::get('/invoices/generate/{orderId}', [App\Http\Controllers\Admin\InvoiceController::class, 'create'])->name('admin.invoices.create');
     Route::post('/invoices/store/{orderId}', [App\Http\Controllers\Admin\InvoiceController::class, 'storeInvoice'])->name('admin.invoices.store');
+    Route::get('/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'viewGeneratedInvoices'])->name('admin.invoices.viewGeneratedInvoices');
+    Route::get('/invoices/{id}', [App\Http\Controllers\Admin\InvoiceController::class, 'show'])->name('admin.invoices.show');
+    Route::get('/invoices/download/{id}', [App\Http\Controllers\Admin\InvoiceController::class, 'download'])->name('admin.invoices.download');

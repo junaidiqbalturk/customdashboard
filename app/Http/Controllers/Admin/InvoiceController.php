@@ -56,6 +56,30 @@ class InvoiceController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'Invoice generated and notification sent to the client.');
     }
+    public function viewGeneratedInvoices()
+    {
+        $invoices = Invoice::with('order', 'user')->get();
 
+        return view('admin.invoices.viewGeneratedInvoices', compact('invoices'));
+    }
+// app/Http/Controllers/Admin/InvoiceController.php
+    public function show($id)
+    {
+        $invoice = Invoice::with('order', 'user')->findOrFail($id);
+        return view('admin.invoices.show', compact('invoice'));
+    }
+    public function download($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $filePath = storage_path('app/public/invoices/invoice-' . $invoice->id . '.pdf');
+
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+
+        return response()->download($filePath);
+    }
+    
+    
    
 }
