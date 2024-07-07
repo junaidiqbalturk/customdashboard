@@ -85,7 +85,7 @@
                             <td>
                                 <h4>Ship To:</h4>
                                 {{ $order->user->name }}<br>
-                                {{ $order->user->address }}
+                                {{ $order->address }}
                             </td>
                         </tr>
                     </table>
@@ -97,6 +97,7 @@
             </tr>
             <tr class="item">
                 <td>Order #{{ $order->id }}</td>
+                <td>Order #{{ $order->digitizing_type }}</td>
                 <td>${{ $invoice->amount }}</td>
             </tr>
             <tr class="total">

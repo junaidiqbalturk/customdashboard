@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <th>Status</th>
-            <td>{{ $invoice->status }}</td>
+            <td>{{ $invoice->$status->name  }}</td>
         </tr>
         <tr>
             <th>Created At</th>

@@ -23,7 +23,7 @@
                 <td>{{ $invoice->order->id }}</td>
                 <td>{{ $invoice->user->name }}</td>
                 <td>{{ $invoice->amount }}</td>
-                <td>{{ $invoice->status }}</td>
+                <td>{{ $invoice->order->status->name}}</td>
                 <td>{{ $invoice->created_at->format('Y-m-d H:i:s') }}</td>
                 <td>
                     <a href="{{ route('admin.invoices.show', $invoice->id) }}" class="btn btn-primary">View</a>
